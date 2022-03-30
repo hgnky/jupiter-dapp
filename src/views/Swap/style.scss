@@ -1,0 +1,18 @@
+.swap-view {
+    width: 80%;
+    max-width: 740px;
+    margin: auto;
+    .bogged-dex{
+        height: 75vh;
+        width: 100%;
+        background: #1e2735;
+        display: block;
+    }
+}
+
+
+@media screen and (max-width: 1240px) {
+    .swap-view {
+        width: 100%;
+    }
+}

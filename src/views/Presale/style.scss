@@ -1,0 +1,185 @@
+.stake-view {
+    width: 80%;
+    max-width: 956px;
+    margin: auto;
+    p, h1, h2, h3, h4, h5, h6{
+        color: #fff;
+    }
+    .title{
+        font-family: Montserrat Bold;
+        font-size: 20px;
+        color: #1db09b;
+        // background-image: linear-gradient(45deg, #1db09b 0%, #7f31c7 100%);
+        // -webkit-background-clip: text;
+        // background-clip: text;
+        // -webkit-text-fill-color: transparent;
+    }
+    .ohm-card {
+      white-space: nowrap;
+      width: auto;
+      margin: auto;
+      margin-bottom: 20px;
+      .stake-top-metrics {
+        .presale-card{
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 30px 25px;
+          background-color: #202020;
+          box-shadow: none;
+          border: 0.5px solid #707070;
+          border-radius: 20px;
+          .progress{
+            display: contents;
+            p{
+              margin-top: -1px;
+            }
+          }
+          .puretext{
+            white-space: break-spaces;
+            text-align: start;
+            line-height: 30px;
+          }
+          .contract-area{
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+            h6{
+              margin-left: 15px;
+            }
+            .puretext{
+              line-height: 15px;
+              .title{
+                  padding: 18px 0;
+              }
+              .notShorten{
+                display: block;
+                [role="tabpanel"] {
+                  display: none;
+                }
+              }
+              .shortened{
+                display: none;
+                [role="tabpanel"] {
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+        .presale-note{
+          font-size: 14px;
+          width: 100%;
+          text-align: end;
+          color: #f44336;
+        }
+        .claimarea{
+          // display: flex;
+          align-items: center;
+          // width: 100%;
+          // .deposit-input{
+          //   width: 80%;
+          // }
+        }
+      }
+    }
+    .stake-button{
+      width: 90%;
+      display: flex;
+      margin: auto;
+      color: #000;
+      box-shadow: 1px 1px 16px 0px #04d9ff;
+      background: #04d9ff;
+      border: 1px solid #04d9ff;
+      font-family: "Montserrat";
+      font-size: 14px;
+      font-weight: 100;
+      &:hover{
+        background: transparent;
+        color: #fff;
+        box-shadow: none;
+      }
+      &:active{
+        background: transparent;
+        box-shadow: 2px 2px 10px 3px #ff00ab;
+      }
+    }
+    .connect-button{
+      width: 90%;
+      display: flex;
+      margin: auto;
+    }
+    .MuiOutlinedInput-notchedOutline{
+      border: 1px solid #fff;
+    }
+    .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+      border: 1px solid #fff;
+    }
+    .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline{
+      border-color: #fff;
+    }
+    #amount-input{
+      color: #fff;
+    }
+  }
+  .makeStyles-content-2::-webkit-scrollbar {
+    display: none;
+  }
+  .makeStyles-content-2{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .top-row-data {
+    position: sticky;
+    overflow: hidden;
+    flex-wrap: wrap;
+    z-index: 5;
+    h5 {
+      font-weight: 600 !important;
+    }
+  }
+  
+  .main-data-area {
+    overflow-x: hidden;
+    flex-flow: wrap;
+    display: flex !important;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10px;
+    height: 73vh;
+    z-index: 2;
+    .MuiGrid-root.MuiGrid-item {
+      display: flex;
+      justify-content: center !important;
+      justify-self: center !important;
+    }
+    .data-grid {
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    .dune-card {
+      height: auto;
+      min-width: 333px;
+      max-width: 700px;
+      width: auto;
+      flex: auto;
+      box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.03);
+      background-color: #ffffff0e;
+      backdrop-filter: blur(60px);
+      -webkit-backdrop-filter: blur(60px);
+      border-radius: 5px !important;
+      iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+      }
+    }
+  }
+
+@media screen and (max-width: 1240px) {
+    .stake-view{
+        width: 100%;
+    }
+}

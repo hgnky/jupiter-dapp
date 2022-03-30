@@ -1,0 +1,82 @@
+.time-menu-root{
+  .time-menu-btn{
+    padding: 10px 30px;
+    // background: rgba(255, 255, 255, 0.2);
+    filter: drop-shadow(10.898px 15.564px 8px rgba(0,0,0,0.15));
+    background-color: #1c1613;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-right: 20px;
+
+    p{
+      font-family: Montserrat;
+      font-size: 15px;
+      color: #FFFFFF;
+    }
+  }
+}
+
+.time-menu-popper{
+  margin-top: 10px;
+
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    filter: drop-shadow(10.898px 15.564px 8px rgba(0,0,0,0.15));
+    background: #1c1613;
+    backdrop-filter: blur(100px);
+  }
+
+  /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
+  @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    background: #1c1613;
+  }
+
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 10;
+
+  .tooltip{
+    display: flex;
+    flex-direction: column;
+
+    .tooltip-item{
+      text-decoration: none;
+      padding: 13px 20px;
+      cursor: pointer;
+
+      &:hover{
+          background: rgba(255,255,255,0.1);
+      }
+
+      p{
+          font-family: Montserrat;
+          font-style: normal;
+          font-size: 14px;
+          line-height: 20px;
+          color: #FFFFFF;
+          text-align: center;
+      }
+    }
+
+    .add-tokens{
+      display: flex;
+      flex-direction: column;
+
+      .add-tokens-title{
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        color: #FFFFFF;
+        text-align: center;
+
+        margin: 5px 0px;
+      }
+    }
+
+    .divider{
+      height: 1px;
+      background: #FFFFFF;
+      border: none;
+    }
+  }
+}

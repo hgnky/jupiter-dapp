@@ -1,0 +1,128 @@
+.dashboard-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+
+  width: 80%;
+  max-width: 956px;
+  margin: 30px auto;
+
+  .dashboard-infos-wrap{
+    .hero-metrics {
+      width: 100%;
+      margin-bottom: 23px;
+      text-align: center;
+      .test-card {
+        max-width: unset !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        box-shadow: none;
+        padding: 16px 0;
+        h5 {
+          font-weight: bold;
+        }
+        div.metric {
+          margin: 3px;
+          min-width: 140px;
+          width: 30%;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          @media screen and (max-width: 390px) {
+            width: 100%;
+          }
+          .box-card {
+            font-family: Montserrat;
+            font-weight: 600;
+            .card-title {
+              font-size: 14px;
+              color: #1db09b;
+              text-transform: uppercase;
+              line-height: 17px;
+              margin-bottom: 4px;
+            }
+            .card-value {
+              font-size: 22px;
+              color: #fff;
+            }
+            .styled-cardcontent {
+              p {
+                font-family: Montserrat;
+                font-weight: 600;
+                font-size: 22px;
+                color: #fff;
+              }
+            }
+          }
+        }
+        @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+          background: #202020;
+          backdrop-filter: blur(100px);
+          border: 1px solid #707070;
+        }
+      
+        /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
+        @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+          background: #202020;
+          border: 1px solid #707070;
+        }
+  
+        border-radius: 20px;
+      }
+    }
+    .dashboard-card{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-weight: 600;
+
+      position: relative;
+      z-index: 2;
+      
+      @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+        background: #202020;
+        backdrop-filter: blur(100px);
+        border: 1px solid #707070;
+      }
+    
+      /* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
+      @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+        background: #202020;
+        border: 1px solid #707070;
+      }
+
+      border-radius: 20px;
+      padding: 20px 0;
+      .card-title {
+        font-family: Montserrat;
+        font-size: 14px;
+        color: #1db09b;
+        text-transform: uppercase;
+        line-height: 17px;
+        margin-bottom: 4px;
+      }
+      .card-value-grad {
+        font-family: Montserrat Bold;
+        font-size: 32px; 
+        color: #fff;
+        // background-image: linear-gradient(45deg, #1db09b 0%, #7f31c7 100%);
+        // background-clip: text;
+        // -webkit-text-fill-color: transparent;
+      }
+      .card-value {
+        font-family: Montserrat;
+        font-size: 20px;
+        color: #fff;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .dashboard-view{
+    width: 100%;
+  }
+}
