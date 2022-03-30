@@ -1,4 +1,4 @@
-export const TOKEN_DECIMALS = 9;
+export const TOKEN_DECIMALS = 5;
 
 export enum Networks {
     ETH = 1,

@@ -33,12 +33,14 @@ export const loadAppDetails = createAsyncThunk(
         const startTimestamp = new Date(startTime.mul(1000).toNumber());
         const endTime = await presaleContract.endTime();
         const endTimestamp = new Date(endTime.mul(1000).toNumber());
-    
+        const pduration = await presaleContract.pSaleDuration();
+        const pEndTimestamp = new Date(startTime.add(pduration).mul(1000).toNumber());
         const minEthlimit = await presaleContract.minETHLimit();
         const maxEthlimit = await presaleContract.maxETHLimit();
         const hardCap = await presaleContract.hardCap();
         const totalRaisedAVAX = await presaleContract.totalRaisedAVAX();
-        const soldAmount = await presaleContract.totaltokenSold();
+        const wprice = await presaleContract.pTokenRatePerEth();
+        
 //_____________________Presale End____________________________
 
         const currentBlock = await provider.getBlockNumber();
@@ -46,7 +48,7 @@ export const loadAppDetails = createAsyncThunk(
         
         const testContract = new ethers.Contract(addresses.JUPITER_ADDRESS, JupiterTokenContract, provider);
 
-        const marketPrice = ((await getMarketPrice(networkID, provider)) / Math.pow(10, 9));
+        const marketPrice = ((await getMarketPrice(networkID, provider)) / Math.pow(10, 13));
 
         const totalSupply = (await testContract.totalSupply()) / Math.pow(10, TOKEN_DECIMALS);
 
@@ -93,13 +95,13 @@ export const loadAppDetails = createAsyncThunk(
         const rateDecimal = await testContract.RATE_DECIMALS()
 
         if (deltaTime < oneYear) {
-            rebaseRate = 2355 / Math.pow(10, rateDecimal)
+            rebaseRate = 2367 / Math.pow(10, rateDecimal)
         } else if (deltaTime >= 7 * oneYear) {
             rebaseRate = 2 / Math.pow(10, rateDecimal)
         } else if (deltaTime >= 15 * oneYear / 10) {
             rebaseRate = 14 / Math.pow(10, rateDecimal)
         } else if (deltaTime >= oneYear) {
-            rebaseRate = 211 / Math.pow(10, rateDecimal)
+            rebaseRate = 210 / Math.pow(10, rateDecimal)
         }
 
         const oneDayRate = Math.pow((1 + rebaseRate), 96) - 1 // 96 rebases per day
@@ -125,13 +127,14 @@ export const loadAppDetails = createAsyncThunk(
         return {
             // currentIndex: Number(ethers.utils.formatUnits(currentIndex, "gwei")) / 4.5,
             price: price,
+            wprice: wprice,
             starttime: startTimestamp,
             endtime: endTimestamp,
+            pEndTimestamp: pEndTimestamp,
             minEthlimit: ethers.utils.formatEther(minEthlimit),
             maxEthlimit: ethers.utils.formatEther(maxEthlimit),
             hardCap: ethers.utils.formatEther(hardCap),
-            totalRaisedAVAX: ethers.utils.formatEther(totalRaisedAVAX),
-            soldAmount: ethers.utils.formatEther(soldAmount),
+            totalRaisedAVAX: ethers.utils.formatEther(totalRaisedAVAX),            
             totalSupply,
             marketCap,
             currentBlock,

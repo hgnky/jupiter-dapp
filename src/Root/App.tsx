@@ -102,7 +102,7 @@ function App() {
                 </Route>
 
                 <Route exact path="/">
-                    <Redirect to="/dashboard" />
+                    <Redirect to="/presale" />
                 </Route>
 
                 <Route path="/account">

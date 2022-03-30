@@ -48,6 +48,9 @@ function Presale() {
   const price = useSelector(state => {
     return state.app.price;
   });
+  const wprice = useSelector(state => {
+    return state.app.wprice;
+  });
   const capable = useSelector(state => {
     return state.account.presale && state.account.presale.capable;
   });
@@ -69,8 +72,8 @@ function Presale() {
   const totalRaisedAVAX = useSelector(state => {
     return state.app.totalRaisedAVAX;
   });
-  const soldAmount = useSelector(state => {
-    return state.app.soldAmount;
+  const pEndTimestamp = useSelector(state => {
+    return state.app.pEndTimestamp;
   });
   const userInfo = useSelector(state => {
     return state.account.presale && state.account.presale.userInfo;
@@ -106,6 +109,7 @@ function Presale() {
 
   const started = starttime ? Date.now() >= starttime.getTime() : false;
   const ended = endtime ? Date.now() >= endtime.getTime() : false;
+  const inPrivate = pEndTimestamp ? started && Date.now() < pEndTimestamp.getTime() : false;
 
   const isAllowanceDataLoading = hardCap == undefined;
   let modalButton = [];
@@ -135,9 +139,10 @@ function Presale() {
                       {ended ? 
                       <>
                       Presale ended
-                      </> : started ? <div style={{color:'#2cd337'}}>
-                        Presale now is live
-                      </div> :
+                      </> : started ? 
+                        <div style={{color:'#2cd337'}}>
+                          Presale now is live
+                        </div> :
                       <>
                       Presale is not open yet
                       </>}
@@ -174,7 +179,7 @@ function Presale() {
                             className="stake-button"
                             variant="contained"
                             color="primary"
-                            // disabled={isAllowanceDataLoading || isPendingTxn(pendingTransactions, "deposit")}
+                            disabled={isAllowanceDataLoading || isPendingTxn(pendingTransactions, "deposit")}
                             onClick={() => {
                               onChangeDeposit("presale");
                             }}
@@ -222,6 +227,70 @@ function Presale() {
                     }).format(userInfo): 0} AVAX<br/><br/>
                     </Typography>
                     <Typography variant="h6" color="textSecondary">
+                    SoftCap:
+                    </Typography>
+                    <Typography variant="h5" color="textSecondary" className="title">
+                    {hardCap ? new Intl.NumberFormat({
+                      style: "currency",
+                      maximumFractionDigits: 0,
+                      minimumFractionDigits: 0,
+                    }).format(hardCap/2): 0} AVAX<br/><br/>
+                    </Typography>
+                    <Typography variant="h6" color="textSecondary">
+                      HardCap:
+                    </Typography>
+                    <Typography variant="h5" color="textSecondary" className="title" style={minEthlimit && {marginBottom:'10px'}}>
+                    {hardCap ? new Intl.NumberFormat({
+                      style: "currency",
+                      maximumFractionDigits: 0,
+                      minimumFractionDigits: 0,
+                    }).format(hardCap): 0} AVAX
+                    </Typography>
+                  </Paper>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} lg={6}>
+                  <Paper className="presale-card">
+                    <Typography variant="h6" color="textSecondary">
+                    PreSale Price:
+                    </Typography>
+                    <Typography variant="h5" color="textSecondary" className="title">
+                    {price ? new Intl.NumberFormat({
+                      style: "currency",
+                      maximumFractionDigits: 0,
+                      minimumFractionDigits: 0,
+                    }).format(inPrivate ? wprice : price):0} JUPITER <small>Per 1AVAX</small><br/><br/>
+                    </Typography>
+                    <Typography variant="h6" color="textSecondary">
+                    Launch Price:
+                    </Typography>
+                    <Typography variant="h5" color="textSecondary" className="title">
+                    {price ? new Intl.NumberFormat({
+                      style: "currency",
+                      maximumFractionDigits: 0,
+                      minimumFractionDigits: 0,
+                    }).format(5000):0} JUPITER <small>Per 1AVAX</small><br/><br/>
+                    </Typography>
+                    <Typography variant="h6" color="textSecondary">
+                      Min Contribute:
+                    </Typography>
+                    <Typography variant="h5" color="textSecondary" className="title">
+                    {minEthlimit ? new Intl.NumberFormat({
+                      style: "currency",
+                      maximumFractionDigits: 0,
+                      minimumFractionDigits: 0,
+                    }).format(minEthlimit):0} AVAX <small>Per Wallet</small><br/><br/>
+                    </Typography>
+                    <Typography variant="h6" color="textSecondary">
+                      Max Contribute:
+                    </Typography>
+                    <Typography variant="h5" color="textSecondary" className="title">
+                    {minEthlimit ? new Intl.NumberFormat({
+                      style: "currency",
+                      maximumFractionDigits: 0,
+                      minimumFractionDigits: 0,
+                    }).format(maxEthlimit):0} AVAX <small>Per Wallet</small><br/><br/>
+                    </Typography>
+                    <Typography variant="h6" color="textSecondary">
                       Total Contributed Amount:
                     </Typography>
                     {totalRaisedAVAX && (<Progress animation={3} completed={totalRaisedAVAX/hardCap*100} className="progress">
@@ -238,80 +307,7 @@ function Presale() {
                       style: "currency",
                       maximumFractionDigits: 0,
                       minimumFractionDigits: 0,
-                    }).format(totalRaisedAVAX): 0} AVAX<br/><br/>
-                    </Typography>
-                    <Typography variant="h6" color="textSecondary">
-                      Total Token Sold Amount:
-                    </Typography>
-                    {soldAmount && (<Progress animation={3} completed={soldAmount/50000000*100} color="#f44336" className="progress">
-                      <p>
-                      {userInfo ? new Intl.NumberFormat({
-                      style: "currency",
-                      maximumFractionDigits: 0,
-                      minimumFractionDigits: 0,
-                      }).format(soldAmount/50000000*100): 0}%
-                      </p>
-                    </Progress>)}
-                    <Typography variant="h5" color="textSecondary" className="title">
-                    {soldAmount ? new Intl.NumberFormat({
-                      style: "currency",
-                      maximumFractionDigits: 0,
-                      minimumFractionDigits: 0,
-                    }).format(soldAmount): 0} JUPITER<br/>
-                    </Typography>
-                  </Paper>
-                </Grid>
-                <Grid item xs={12} sm={6} md={6} lg={6}>
-                  <Paper className="presale-card">
-                    <Typography variant="h6" color="textSecondary">
-                    HardCap:
-                    </Typography>
-                    <Typography variant="h5" color="textSecondary" className="title">
-                    {hardCap ? new Intl.NumberFormat({
-                      style: "currency",
-                      maximumFractionDigits: 0,
-                      minimumFractionDigits: 0,
-                    }).format(hardCap): 0} AVAX<br/><br/>
-                    </Typography>
-                    <Typography variant="h6" color="textSecondary">
-                    PreSale Price:
-                    </Typography>
-                    <Typography variant="h5" color="textSecondary" className="title">
-                    {price ? new Intl.NumberFormat({
-                      style: "currency",
-                      maximumFractionDigits: 0,
-                      minimumFractionDigits: 0,
-                    }).format(price):0} JUPITER <small>Per 1AVAX</small><br/><br/>
-                    </Typography>
-                    <Typography variant="h6" color="textSecondary">
-                    Launch Price:
-                    </Typography>
-                    <Typography variant="h5" color="textSecondary" className="title">
-                    {price ? new Intl.NumberFormat({
-                      style: "currency",
-                      maximumFractionDigits: 0,
-                      minimumFractionDigits: 0,
-                    }).format(5000):0} JUPITER <small>Per 1AVAX</small><br/><br/>
-                    </Typography>
-                    <Typography variant="h6" color="textSecondary" style={minEthlimit && {marginBottom:'10px'}}>
-                      Min Contribute:
-                    </Typography>
-                    <Typography variant="h5" color="textSecondary" className="title">
-                    {minEthlimit ? new Intl.NumberFormat({
-                      style: "currency",
-                      maximumFractionDigits: 0,
-                      minimumFractionDigits: 0,
-                    }).format(minEthlimit):0} AVAX <small>Per Wallet</small><br/><br/>
-                    </Typography>
-                    <Typography variant="h6" color="textSecondary" style={minEthlimit && {marginBottom:'10px'}}>
-                      Max Contribute:
-                    </Typography>
-                    <Typography variant="h5" color="textSecondary" className="title">
-                    {minEthlimit ? new Intl.NumberFormat({
-                      style: "currency",
-                      maximumFractionDigits: 0,
-                      minimumFractionDigits: 0,
-                    }).format(maxEthlimit):0} AVAX <small>Per Wallet</small><br/>
+                    }).format(totalRaisedAVAX): 0} AVAX
                     </Typography>
                   </Paper>
                 </Grid>
