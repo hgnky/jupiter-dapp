@@ -2,14 +2,14 @@ import { useCallback, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Social from "./social";
 import LogoIcon from "../../../assets/icons/test-logo.svg";
-import DashboardIcon from "../../../assets/icons/dashboard.svg";
-import AccountIcon from "../../../assets/icons/stake.svg";
+// import DashboardIcon from "../../../assets/icons/dashboard.svg";
+// import AccountIcon from "../../../assets/icons/stake.svg";
 import { trim, shorten } from "../../../helpers";
 import { useAddress } from "../../../hooks";
 import { Link } from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
+// import { Skeleton } from "@material-ui/lab";
 import "./drawer-content.scss";
-import DocsIcon from "../../../assets/icons/stake.svg";
+// import DocsIcon from "../../../assets/icons/stake.svg";
 import classnames from "classnames";
 
 function NavContent() {
