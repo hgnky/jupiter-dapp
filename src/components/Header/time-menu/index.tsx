@@ -62,7 +62,7 @@ function TimeMenu() {
                 {({ TransitionProps }) => (
                     <Fade {...TransitionProps} timeout={200}>
                         <div className="tooltip">
-                            <Link className="tooltip-item" href={`https://app.uniswap.org/#/swap?chain=ropsten&inputCurrency=ETH&outputCurrency=${JUPITER_ADDRESS}`} target="_blank">
+                            <Link className="tooltip-item" href={`https://app.bogged.finance/avax/swap?chain=avalanche&tokenIn=AVAX&tokenOut=${JUPITER_ADDRESS}&theme=dark`} target="_blank">
                                 <p>Buy on BogSwap</p>
                             </Link>
 

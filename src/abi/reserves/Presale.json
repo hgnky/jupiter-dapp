@@ -165,26 +165,6 @@
         "stateMutability": "view",
         "type": "function"
     }, {
-        "inputs": [],
-        "name": "pSaleDuration",
-        "outputs": [{
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-        }],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "pTokenRatePerEth",
-        "outputs": [{
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-        }],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
         "inputs": [{
             "internalType": "address",
             "name": "_account",
@@ -265,14 +245,20 @@
             "internalType": "uint256",
             "name": "rate",
             "type": "uint256"
-        }, {
-            "internalType": "uint256",
-            "name": "pRate",
-            "type": "uint256"
         }],
         "name": "setTokenRatePerEth",
         "outputs": [],
         "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "softCap",
+        "outputs": [{
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+        }],
+        "stateMutability": "view",
         "type": "function"
     }, {
         "inputs": [],

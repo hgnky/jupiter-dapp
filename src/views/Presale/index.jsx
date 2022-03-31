@@ -43,7 +43,7 @@ function Presale() {
     return state.account.balances && state.account.balances.avax;
   });
   const jupiterBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.ohm;
+    return state.account.balances && state.account.balances.test;
   });
   const price = useSelector(state => {
     return state.app.price;
@@ -78,7 +78,10 @@ function Presale() {
   const userInfo = useSelector(state => {
     return state.account.presale && state.account.presale.userInfo;
   });
-
+  const iswllisted = useSelector(state => {
+    return state.account.presale && state.account.presale.iswl;
+  });
+  
   const setMax = () => {
     if(avaxBalance > capable) {
       setQuantity(capable);
@@ -124,7 +127,9 @@ function Presale() {
     <div className="stake-view">
         <Grid item className={`ohm-card`}>
             <div className="stake-top-metrics">
-            {!ended && starttime && 
+              {!iswllisted && <Typography variant="body1" className="privatesale-note" color="textSecondary">
+                This is private sale, to participate in private sale, you need to register WL list. You are not registered yet.</Typography>}
+            {!ended && starttime &&
                   <Box mb={3}>
                     <Typography variant="h5" color="textSecondary" className="title">
                       {started ? 'PreSale Ends In' : 'PreSale Starts In'}
@@ -179,7 +184,7 @@ function Presale() {
                             className="stake-button"
                             variant="contained"
                             color="primary"
-                            disabled={isAllowanceDataLoading || isPendingTxn(pendingTransactions, "deposit")}
+                            disabled={!iswllisted || isAllowanceDataLoading || isPendingTxn(pendingTransactions, "deposit")}
                             onClick={() => {
                               onChangeDeposit("presale");
                             }}

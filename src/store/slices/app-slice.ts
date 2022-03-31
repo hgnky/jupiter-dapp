@@ -33,13 +33,10 @@ export const loadAppDetails = createAsyncThunk(
         const startTimestamp = new Date(startTime.mul(1000).toNumber());
         const endTime = await presaleContract.endTime();
         const endTimestamp = new Date(endTime.mul(1000).toNumber());
-        const pduration = await presaleContract.pSaleDuration();
-        const pEndTimestamp = new Date(startTime.add(pduration).mul(1000).toNumber());
         const minEthlimit = await presaleContract.minETHLimit();
         const maxEthlimit = await presaleContract.maxETHLimit();
         const hardCap = await presaleContract.hardCap();
         const totalRaisedAVAX = await presaleContract.totalRaisedAVAX();
-        const wprice = await presaleContract.pTokenRatePerEth();
         
 //_____________________Presale End____________________________
 
@@ -105,13 +102,8 @@ export const loadAppDetails = createAsyncThunk(
         }
 
         const oneDayRate = Math.pow((1 + rebaseRate), 96) - 1 // 96 rebases per day
-
         const fiveDayRate = Math.pow((1 + rebaseRate), 5 * 96) - 1
-
         const apy = Math.pow((1 + rebaseRate), 365 * 96) - 1
-
-
-
 
         // const epoch = await stakingContract.epoch();
         // const stakingReward = epoch.distribute;
@@ -127,10 +119,8 @@ export const loadAppDetails = createAsyncThunk(
         return {
             // currentIndex: Number(ethers.utils.formatUnits(currentIndex, "gwei")) / 4.5,
             price: price,
-            wprice: wprice,
             starttime: startTimestamp,
             endtime: endTimestamp,
-            pEndTimestamp: pEndTimestamp,
             minEthlimit: ethers.utils.formatEther(minEthlimit),
             maxEthlimit: ethers.utils.formatEther(maxEthlimit),
             hardCap: ethers.utils.formatEther(hardCap),

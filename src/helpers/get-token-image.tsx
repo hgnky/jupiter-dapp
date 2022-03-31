@@ -1,4 +1,4 @@
-import TestImg from "../assets/tokens/test.png";
+import TestImg from "../assets/tokens/jupiter.png";
 
 function toUrl(tokenPath: string): string {
     const host = window.location.origin;
@@ -6,7 +6,7 @@ function toUrl(tokenPath: string): string {
 }
 
 export function getTokenUrl(name: string) {
-    if (name === "test") {
+    if (name === "jupiter") {
         return toUrl(TestImg);
     }
 

@@ -47,6 +47,7 @@ interface IUserAccountDetails {
     presale: {
         capable: any;
         userInfo: any;
+        iswl: boolean;
     };
 }
 
@@ -54,6 +55,7 @@ export const loadAccountDetails = createAsyncThunk("account/loadAccountDetails",
     let testBalance = 0;
     let capable = 0;
     let userInfo;
+    let iswl = false;
     const addresses = getAddresses(networkID);
     
     const etherBalance = await provider.getBalance(address);
@@ -67,6 +69,7 @@ export const loadAccountDetails = createAsyncThunk("account/loadAccountDetails",
         const presaleContract = new ethers.Contract(addresses.PRESALE_ADDRESS, PresaleABI, provider);
         capable = await presaleContract.getUserRemainingAllocation(address);
         userInfo = await presaleContract.usersInvestments(address);
+        iswl = await presaleContract.whiteListed(address);
     }
 
     return {
@@ -77,6 +80,7 @@ export const loadAccountDetails = createAsyncThunk("account/loadAccountDetails",
         presale: {
             capable: ethers.utils.formatEther(capable),
             userInfo: ethers.utils.formatEther(userInfo),
+            iswl: iswl,
         }
     };
 });
