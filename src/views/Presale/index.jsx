@@ -239,7 +239,7 @@ function Presale() {
                       style: "currency",
                       maximumFractionDigits: 0,
                       minimumFractionDigits: 0,
-                    }).format(hardCap/2): 0} AVAX<br/><br/>
+                    }).format(300): 0} AVAX<br/><br/>
                     </Typography>
                     <Typography variant="h6" color="textSecondary">
                       HardCap:
