@@ -273,7 +273,7 @@ function Presale() {
                       style: "currency",
                       maximumFractionDigits: 0,
                       minimumFractionDigits: 0,
-                    }).format(5000):0} JUPITER <small>Per 1AVAX</small><br/><br/>
+                    }).format(850):0} JUPITER <small>Per 1AVAX</small><br/><br/>
                     </Typography>
                     <Typography variant="h6" color="textSecondary">
                       Min Contribute:
